@@ -1,0 +1,82 @@
+# =========================
+# Eclipse
+# =========================
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders/
+
+# Eclipse Core
+.project
+
+# JDT-specific
+.classpath
+
+# Annotation Processing
+.factorypath
+
+# PDT-specific
+.buildpath
+
+# =========================
+# Java
+# =========================
+*.class
+
+# Logs
+*.log
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# JVM crash logs
+hs_err_pid*
+
+# =========================
+# Maven
+# =========================
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# =========================
+# Gradle
+# =========================
+.gradle/
+build/
+
+# =========================
+# IntelliJ (si ouvert ailleurs)
+# =========================
+.idea/
+*.iml
+out/
+
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
