@@ -8,7 +8,9 @@ public class ModalitePaiement {
 	private int nombrePaiementMax;
 	private double reduction;
 
-	public ModalitePaiement() {
+	public ModalitePaiement(Date dateEcheance, double tarif) {
+		this.dateEcheance = dateEcheance;
+		this.tarif = tarif;
 	}
 
 	public Date getDateEcheance() {
@@ -19,7 +21,7 @@ public class ModalitePaiement {
 		this.dateEcheance = dateEcheance;
 	}
 
-	public double getTarif() {
+	public double getTarif() { 
 		return tarif;
 	}
 

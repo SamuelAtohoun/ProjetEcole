@@ -1,5 +1,7 @@
 package projetEcole;
 
+import Observer.PaymentObserver;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,10 +14,20 @@ public class Paiement {
 	private ModalitePaiement modalite;
 	private StrategiePaiement strategie; // <-- contexte Strategy
 	private List<Versement> versements; // <-- historique des versements
+	private List<PaymentObserver> observers;
 
-	public Paiement() {
+	public Paiement(ModalitePaiement modalite) {
+		this.modalite = modalite;
 		this.versements = new ArrayList<>();
+		observers = new ArrayList<>();
 	}
+	
+	// Ajouter un observer
+    public void addObserver(PaymentObserver observer) {
+
+        observers.add(observer);
+    }
+
 
 	// Calcule le total déjà versé
 	public double getMontantDejaPaye() {
