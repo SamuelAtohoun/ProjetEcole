@@ -2,10 +2,21 @@ package projetEcole;
 
 import java.util.Date;
 
+import state.EtatCreneau;
+
 public class Creneau {
 	private Date date;
 	private String heureDebut; // Ou type LocalTime
 	private String heureFin; // Ou type LocalTime
+	private EtatCreneau etatCreneau;
+
+	public EtatCreneau getEtatCreneau() {
+		return etatCreneau;
+	}
+
+	public void setEtatCreneau(EtatCreneau etatCreneau) {
+		this.etatCreneau = etatCreneau;
+	}
 
 	public Creneau() {
 	}
