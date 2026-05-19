@@ -1,33 +1,23 @@
 package projetEcole;
 
-import Observer.PaymentObserver;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import factory.MoyenPaiement;
 import strategie.StrategiePaiement;
 import strategie.Versement;
 
 public class Paiement {
 	private Parent parent;
 	private ModalitePaiement modalite;
-	private StrategiePaiement strategie; // <-- contexte Strategy
-	private List<Versement> versements; // <-- historique des versements
-	private List<PaymentObserver> observers;
+	private StrategiePaiement strategie;
+	private List<Versement> versements;
 
 	public Paiement(ModalitePaiement modalite) {
 		this.modalite = modalite;
 		this.versements = new ArrayList<>();
-		observers = new ArrayList<>();
 	}
-	
-	// Ajouter un observer
-    public void addObserver(PaymentObserver observer) {
-
-        observers.add(observer);
-    }
-
 
 	// Calcule le total déjà versé
 	public double getMontantDejaPaye() {
@@ -44,9 +34,13 @@ public class Paiement {
 	}
 
 	// Effectue le prochain versement
-	public void effectuerVersement() {
+	public void effectuerVersement(MoyenPaiement moyenPaiement) {
+		if (getMontantRestant() <= 0) {
+			throw new IllegalStateException("Ce paiement est déjà soldé.");
+		}
 		double montant = strategie.calculerProchainVersement(modalite, getMontantDejaPaye());
-		versements.add(new Versement(new Date(), montant));
+		versements.add(new Versement(new Date(), montant, moyenPaiement));
+		modalite.notifierObservers("Versement de " + montant + " € effectué. Reste : " + getMontantRestant() + " €");
 	}
 
 	// Getters / Setters

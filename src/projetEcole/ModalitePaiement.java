@@ -1,32 +1,59 @@
 package projetEcole;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class ModalitePaiement {
+import Observer.PaymentObserver;
+import Observer.Subject;
+import strategie.StrategiePaiement;
+
+public class ModalitePaiement implements Subject {
+
 	private Date dateEcheance;
 	private double tarif;
 	private int nombrePaiementMax;
-	private double reduction;
+	private StrategiePaiement strategie;
+	private List<PaymentObserver> observers = new ArrayList<>();
 
-	public ModalitePaiement(Date dateEcheance, double tarif) {
-		this.dateEcheance = dateEcheance;
-		this.tarif = tarif;
+	// --- Subject ---
+
+	@Override
+	public void addObserver(PaymentObserver observer) {
+		observers.add(observer);
 	}
 
+	@Override
+	public void removeObserver(PaymentObserver observer) {
+		observers.remove(observer);
+	}
+
+	@Override
+	public void notifierObservers(String message) {
+		for (PaymentObserver observer : observers) {
+			observer.onChangement(message);
+		}
+	}
+
+	// Appelé quand une échéance change
+	public void setDateEcheance(Date dateEcheance) {
+		this.dateEcheance = dateEcheance;
+		notifierObservers("Nouvelle échéance de paiement : " + dateEcheance);
+	}
+
+	// Appelé quand le tarif change
+	public void setTarif(double tarif) {
+		this.tarif = tarif;
+		notifierObservers("Le tarif a été mis à jour : " + tarif + " €");
+	}
+
+	// Getters / Setters sans notification
 	public Date getDateEcheance() {
 		return dateEcheance;
 	}
 
-	public void setDateEcheance(Date dateEcheance) {
-		this.dateEcheance = dateEcheance;
-	}
-
-	public double getTarif() { 
+	public double getTarif() {
 		return tarif;
-	}
-
-	public void setTarif(double tarif) {
-		this.tarif = tarif;
 	}
 
 	public int getNombrePaiementMax() {
@@ -37,11 +64,11 @@ public class ModalitePaiement {
 		this.nombrePaiementMax = nombrePaiementMax;
 	}
 
-	public double getReduction() {
-		return reduction;
+	public StrategiePaiement getStrategie() {
+		return strategie;
 	}
 
-	public void setReduction(double reduction) {
-		this.reduction = reduction;
+	public void setStrategie(StrategiePaiement strategie) {
+		this.strategie = strategie;
 	}
 }

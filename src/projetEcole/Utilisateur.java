@@ -1,7 +1,6 @@
 package projetEcole;
 
 public class Utilisateur {
-	private int idUtilisateur;
 	private String nom;
 	private String prenom;
 	private String email;
