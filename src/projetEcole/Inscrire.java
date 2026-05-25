@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Inscrire {
 	private Creneau creneau;
-	private Cours cours; // Clé primaire & étrangère id_cours
-	private Enfant enfant; // Clé primaire & étrangère id_enfant
+	private Cours cours; 
+	private Enfant enfant; 
 	private Date dateInscription;
 
 	public Inscrire() {

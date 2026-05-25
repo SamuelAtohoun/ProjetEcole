@@ -39,7 +39,7 @@ public class EcoleManager {
 
 	// Notifie un parent spécifique
 	public void notifier(Parent parent, String message) {
-		// Ici branchement futur avec le patron Observer
+
 		System.out.println("Notification à " + parent.getEmail() + " : " + message);
 	}
 }

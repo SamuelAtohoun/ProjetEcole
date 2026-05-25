@@ -13,8 +13,7 @@ public class PaiementEchelonne implements StrategiePaiement {
 			throw new IllegalStateException("Ce cours est déjà entièrement payé.");
 		}
 
-		// Dernier versement : on paie exactement ce qui reste (évite les erreurs
-		// d'arrondi)
+		// Dernier versement : arrondi
 		return Math.min(versement, resteAPayer);
 	}
 

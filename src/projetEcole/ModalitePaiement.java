@@ -16,8 +16,6 @@ public class ModalitePaiement implements Subject {
 	private StrategiePaiement strategie;
 	private List<PaymentObserver> observers = new ArrayList<>();
 
-	// --- Subject ---
-
 	@Override
 	public void addObserver(PaymentObserver observer) {
 		observers.add(observer);
